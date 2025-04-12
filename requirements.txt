@@ -1,0 +1,5 @@
+haystack-ai
+kafka-python
+azure-storage-blob
+python-dotenv
+pydantic
