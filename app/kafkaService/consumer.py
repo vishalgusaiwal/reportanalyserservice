@@ -10,12 +10,12 @@ class KafkaReportConsumer:
         # self.bootstrap_servers = bootstrap_servers
         context = ssl.create_default_context(
             purpose=ssl.Purpose.SERVER_AUTH,
-            cafile="C:/Users/visha/JavaProject/cloudIntanceDetails/ApacheKafkaDetails/ca.pem"
+            cafile="path/to/ca.pem/file"
         )
 
         context.load_cert_chain(
-            certfile="C:/Users/visha/JavaProject/cloudIntanceDetails/ApacheKafkaDetails/service.cert",
-            keyfile="C:/Users/visha/JavaProject/cloudIntanceDetails/ApacheKafkaDetails/service.key",
+            certfile="path/to/cert/file",
+            keyfile="path/to/key/file",
             password="changeit"
         )
 
@@ -26,7 +26,7 @@ class KafkaReportConsumer:
             ssl_context=context,
             auto_offset_reset="earliest",
             enable_auto_commit=True,
-            group_id="medical-report-group",
+            group_id="group_id",
             value_deserializer=lambda x: json.loads(x.decode("utf-8")),
             request_timeout_ms=60000,
             session_timeout_ms=45000,
