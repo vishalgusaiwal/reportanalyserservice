@@ -20,7 +20,7 @@ def process_report(message: dict):
         print(f"🔄 Processing report for patient: {patient_id}")
 
         # 1. Download PDF
-        downloadPath = "C:/Users/visha/JavaProject/reportanalyserservice/app"
+        downloadPath = "download/path"
         downloader = AzureBlobDownloader()
         local_pdf_path = downloader.download_blob(report_url,download_path=downloadPath)
         print(f"📥 Downloaded report to: {local_pdf_path}")
@@ -38,7 +38,7 @@ def process_report(message: dict):
         }
         producer = KafkaReportProducer(
             topic="email-output-topic",
-            bootstrap_servers="kafka-27ebcf53-ee-9d0c.k.aivencloud.com:23051"
+            bootstrap_servers="server_url:port"
         )
         producer.produce_email_payload(output_payload)
 
@@ -55,6 +55,6 @@ if __name__ == "__main__":
     consumer = KafkaReportConsumer(
         topic="report-topic",
         group_id="medical-report-group2",
-        bootstrap_servers=["kafka-27ebcf53-ee-9d0c.k.aivencloud.com:23051"]
+        bootstrap_servers=["server_url:port"]
     )
     consumer.listen(process_report)
