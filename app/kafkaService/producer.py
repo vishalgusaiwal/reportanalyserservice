@@ -10,12 +10,12 @@ class KafkaReportProducer:
         # self.bootstrap_servers = bootstrap_servers
         context = ssl.create_default_context(
             purpose=ssl.Purpose.SERVER_AUTH,
-            cafile="C:/Users/visha/JavaProject/cloudIntanceDetails/ApacheKafkaDetails/ca.pem"
+            cafile="path/to/ca.pem/file"
         )
 
         context.load_cert_chain(
-            certfile="C:/Users/visha/JavaProject/cloudIntanceDetails/ApacheKafkaDetails/service.cert",
-            keyfile="C:/Users/visha/JavaProject/cloudIntanceDetails/ApacheKafkaDetails/service.key",
+            certfile="path/to/cert/file",
+            keyfile="path/to/key/file",
             password="changeit"
         )
         self.producer = KafkaProducer(
